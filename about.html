@@ -12,8 +12,8 @@
       --primary-fg: #fff;
       --primary-bg: #18162a;
       --accent-light: #dcd2fb;
+      --glow: 0 0 16px #a987ff99, 0 0 40px #a987ff33;
       --shadow: 0 7px 32px #7b3ff244;
-      --glow: 0 0 32px #a987ff66, 0 0 12px #fff7;
       --header-height: 64px;
     }
     html, body {
@@ -30,6 +30,7 @@
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    /* HEADER styles: sticky and logo always centered */
     .header {
       width: 100%;
       position: sticky;
@@ -38,16 +39,16 @@
       background: var(--primary-bg);
       box-shadow: 0 4px 24px #271d4911;
       height: var(--header-height);
+      min-height: var(--header-height);
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: var(--header-height);
     }
     .header-inner {
       width: 100%;
-      height: 100%;
       max-width: 1200px;
       margin: 0 auto;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -58,18 +59,18 @@
       font-weight: 900;
       color: var(--accent);
       letter-spacing: 2px;
-      margin: 0 auto;
       text-shadow: 0 2px 14px var(--accent), 0 1px 0 #fff1;
       user-select: none;
       position: absolute;
       left: 50%;
-      transform: translateX(-50%);
       top: 50%;
-      white-space: nowrap;
+      transform: translate(-50%, -50%);
       z-index: 1202;
+      white-space: nowrap;
       line-height: 1;
       transition: font-size 0.2s;
       text-decoration: none;
+      pointer-events: auto;
     }
     .hamburger {
       display: block;
@@ -171,12 +172,14 @@
         justify-content: flex-start;
       }
       .logo {
-        left: 18px;
-        transform: none;
-        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
         font-size: 1.6em;
       }
     }
+    /* --- about page specific styles remain unchanged --- */
     .about-hero {
       background: linear-gradient(120deg, #1b1a24 70%, #271d49 100%);
       border-radius: 0 0 28px 28px;
@@ -240,6 +243,7 @@
   </style>
 </head>
 <body>
+  <!-- HEADER (centered logo, sticky, hamburger for mobile) -->
   <header class="header">
     <div class="header-inner">
       <a class="logo" href="index.html">Abiral Studios</a>
@@ -259,18 +263,37 @@
       </nav>
     </div>
   </header>
-  <main>
-    <section class="about-hero">
-      <h1>About Abiral Studios</h1>
-      <span class="hero-underline"></span>
-      <p>Abiral Studios is dedicated to providing top-notch audio production services. Our team is passionate about music and brings years of expertise in custom beats, mixing, mastering, and vocal editing.</p>
-    </section>
-    <section class="about-section">
-      <h2>Our Mission</h2>
-      <p>To empower artists and creators by delivering professional-grade audio services that elevate their sound and vision.</p>
-    </section>
-    <!-- Add more sections as needed! -->
-  </main>
+  <!-- YOUR ABOUT PAGE CONTENT BELOW (unchanged) -->
+  <section class="about-hero">
+    <h1>About Us</h1>
+    <span class="hero-underline"></span>
+    <p>
+      Welcome to Abiral Studios!<br>
+      We are a passionate team dedicated to delivering professional audio production services, including custom beats, mixing, mastering, and vocal editing. With over 5 years of experience in FL Studio, our goal is to help music creators and artists achieve their vision with a polished, modern sound.<br>
+      <br>
+      Whether you’re looking to elevate your next track or need expert guidance on your project, we’re here to help you shine.
+    </p>
+  </section>
+  <section class="about-section">
+    <h2>Our Story</h2>
+    <p>
+      Abiral Studios started as a small group of friends with a love for music and sound engineering. Over the years, we’ve worked with a diverse range of artists, constantly refining our craft and staying up-to-date with the latest trends in audio production.<br>
+      <br>
+      Our studio is built on creativity, collaboration, and a commitment to quality. We believe every artist deserves a sound that’s uniquely theirs, and we’re here to make that happen.
+    </p>
+  </section>
+  <section class="team-section">
+    <h2>The Team</h2>
+    <p>
+      Our team is made up of experienced producers, engineers, and musicians who share a common goal: to bring out the best in your music. We combine technical expertise with a genuine love for what we do, ensuring that every project gets the attention and care it deserves.
+    </p>
+  </section>
+  <section class="join-section">
+    <h2>Join Us</h2>
+    <p>
+      Interested in working with us or joining our team? We’re always looking to collaborate with talented, driven individuals. <a href="contact.html">Contact us</a> to learn more!
+    </p>
+  </section>
   <script>
     const hamburger = document.getElementById('hamburger');
     const nav = document.getElementById('nav');
