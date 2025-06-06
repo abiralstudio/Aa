@@ -1,303 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Abiral Studios - Custom Audio Player with Spectrum</title>
-<meta name="description" content="Professional audio production by Abiral Studios - mixing, mastering, custom beats and vocal editing. 5+ years of FL Studio expertise." />
-<meta name="keywords" content="audio production, mixing, mastering, custom beats, vocal mixing, FL Studio, Abiral Studios" />
-<meta name="author" content="Abiral Studios" />
-<style>
-  body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #EEEFE0;
-    color: #2a2a2a;
-    margin: 0;
-    padding: 40px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  h1 {
-    margin-bottom: 40px;
-  }
-  .player {
-    background: #D1D8BE;
-    padding: 20px 30px;
-    border-radius: 12px;
-    width: 340px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    margin-bottom: 60px;
-    user-select: none;
-  }
-  .track-title {
-    font-weight: 700;
-    font-size: 1.3em;
-    margin-bottom: 15px;
-    color: #2a2a2a;
-    text-align: center;
-  }
-  .controls {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 15px;
-  }
-  button.play-pause {
-    background-color: #7c987a;
-    border: none;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  button.play-pause:hover {
-    background-color: #6a7c65;
-  }
-  .progress-container {
-    position: relative;
-    width: 100%;
-    height: 8px;
-    background: #C3D0B5;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  .progress {
-    background-color: #7c987a;
-    height: 8px;
-    width: 0%;
-    border-radius: 5px;
-    transition: width 0.1s linear;
-  }
-  .time {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85em;
-    margin-top: 5px;
-    color: #4a4a4a;
-  }
-  .volume-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-  }
-  input[type=range] {
-    -webkit-appearance: none;
-    width: 150px;
-    height: 8px;
-    background: #C3D0B5;
-    border-radius: 5px;
-    outline: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #7c987a;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
-    transition: background 0.3s ease;
-    margin-top: -5px;
-  }
-  input[type=range]:hover::-webkit-slider-thumb {
-    background: #6a7c65;
-  }
-  input[type=range]::-moz-range-thumb {
-    background: #7c987a;
-    border: none;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  input[type=range]:hover::-moz-range-thumb {
-    background: #6a7c65;
-  }
-  /* Spectrum canvas */
-  canvas.spectrum {
-    display: block;
-    margin: 25px auto 0;
-    background: #C3D0B5;
-    border-radius: 10px;
-    width: 320px;
-    height: 100px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abiral Studios - Music Production & Beats</title>
+  <meta name="description" content="Abiral Studios - Professional music production, mixing, mastering, and custom beats." />
+  <meta name="keywords" content="music production, mixing, mastering, beats, audio player, Abiral Studios" />
+  <meta name="author" content="Abiral Chettri" />
+
+  <style>
+    /* === Basic Reset & Fonts === */
+    body {
+      margin: 0; 
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f9f9f9;
+      color: #2a2a2a;
+      line-height: 1.6;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    h1 {
+      margin-bottom: 10px;
+      color: #4a4a4a;
+    }
+    p {
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    /* === Audio Player Styles === */
+    .player {
+      background: #D1D8BE;
+      padding: 20px 30px;
+      border-radius: 12px;
+      width: 340px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      user-select: none;
+      color: #2a2a2a;
+    }
+    .track-title {
+      font-weight: 700;
+      font-size: 1.3em;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    button.play-pause {
+      background-color: #7c987a;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button.play-pause:hover {
+      background-color: #6a7c65;
+    }
+    .progress-container {
+      position: relative;
+      width: 100%;
+      height: 8px;
+      background: #C3D0B5;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .progress {
+      background-color: #7c987a;
+      height: 8px;
+      width: 0%;
+      border-radius: 5px;
+      transition: width 0.1s linear;
+    }
+    .time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85em;
+      margin-top: 5px;
+      color: #4a4a4a;
+    }
+    .volume-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 150px;
+      height: 8px;
+      background: #C3D0B5;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: #7c987a;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      transition: background 0.3s ease;
+      margin-top: -5px;
+    }
+    input[type=range]:hover::-webkit-slider-thumb {
+      background: #6a7c65;
+    }
+    input[type=range]::-moz-range-thumb {
+      background: #7c987a;
+      border: none;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    input[type=range]:hover::-moz-range-thumb {
+      background: #6a7c65;
+    }
+    canvas.spectrum {
+      display: block;
+      margin: 25px auto 0;
+      background: #C3D0B5;
+      border-radius: 10px;
+      width: 320px;
+      height: 100px;
+    }
+
+    /* Responsive */
+    @media (max-width: 380px) {
+      .player {
+        width: 90vw;
+        padding: 15px;
+      }
+      input[type=range] {
+        width: 120px;
+      }
+      canvas.spectrum {
+        width: 280px;
+        height: 90px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<h1>Abiral Studios - Work Preview</h1>
+  <h1>Welcome to Abiral Studios</h1>
+  <p>Your go-to place for professional music production, mixing, mastering, and custom beats. Enjoy our exclusive audio samples below!</p>
 
-<div class="player" data-title="Westcoast Beat" data-src="track1.mp3">
-  <div class="track-title">Westcoast Beat</div>
-  <audio></audio>
+  <!-- Audio Player 1 -->
+  <div class="player" data-title="Westcoast Beat" data-src="track1.mp3">
+    <div class="track-title">Westcoast Beat</div>
+    <audio></audio>
 
-  <div class="controls">
-    <button class="play-pause" aria-label="Play/Pause">▶️</button>
-    <div class="progress-container" aria-label="Audio progress">
-      <div class="progress"></div>
+    <div class="controls">
+      <button class="play-pause" aria-label="Play/Pause">▶️</button>
+      <div class="progress-container" aria-label="Audio progress">
+        <div class="progress"></div>
+      </div>
     </div>
-  </div>
 
-  <div class="time">
-    <span class="current-time">0:00</span>
-    <span class="duration">0:00</span>
-  </div>
-
-  <div class="volume-container">
-    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume control"/>
-  </div>
-
-  <canvas class="spectrum" width="320" height="100"></canvas>
-</div>
-
-<div class="player" data-title="Sexy Drill Beat" data-src="track2.mp3">
-  <div class="track-title">Sexy Drill Beat</div>
-  <audio></audio>
-
-  <div class="controls">
-    <button class="play-pause" aria-label="Play/Pause">▶️</button>
-    <div class="progress-container" aria-label="Audio progress">
-      <div class="progress"></div>
+    <div class="time">
+      <span class="current-time">0:00</span>
+      <span class="duration">0:00</span>
     </div>
+
+    <div class="volume-container">
+      <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume control"/>
+    </div>
+
+    <canvas class="spectrum" width="320" height="100"></canvas>
   </div>
 
-  <div class="time">
-    <span class="current-time">0:00</span>
-    <span class="duration">0:00</span>
+  <!-- Audio Player 2 -->
+  <div class="player" data-title="Sexy Drill Beat" data-src="track2.mp3">
+    <div class="track-title">Sexy Drill Beat</div>
+    <audio></audio>
+
+    <div class="controls">
+      <button class="play-pause" aria-label="Play/Pause">▶️</button>
+      <div class="progress-container" aria-label="Audio progress">
+        <div class="progress"></div>
+      </div>
+    </div>
+
+    <div class="time">
+      <span class="current-time">0:00</span>
+      <span class="duration">0:00</span>
+    </div>
+
+    <div class="volume-container">
+      <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume control"/>
+    </div>
+
+    <canvas class="spectrum" width="320" height="100"></canvas>
   </div>
 
-  <div class="volume-container">
-    <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume control"/>
-  </div>
+  <script>
+    document.querySelectorAll('.player').forEach(player => {
+      const audio = player.querySelector('audio');
+      const playBtn = player.querySelector('.play-pause');
+      const progressContainer = player.querySelector('.progress-container');
+      const progress = player.querySelector('.progress');
+      const currentTimeEl = player.querySelector('.current-time');
+      const durationEl = player.querySelector('.duration');
+      const volumeSlider = player.querySelector('.volume-slider');
+      const canvas = player.querySelector('canvas.spectrum');
+      const ctx = canvas.getContext('2d');
 
-  <canvas class="spectrum" width="320" height="100"></canvas>
-</div>
-
-<script>
-  document.querySelectorAll('.player').forEach(player => {
-    const audio = player.querySelector('audio');
-    const playBtn = player.querySelector('.play-pause');
-    const progressContainer = player.querySelector('.progress-container');
-    const progress = player.querySelector('.progress');
-    const currentTimeEl = player.querySelector('.current-time');
-    const durationEl = player.querySelector('.duration');
-    const volumeSlider = player.querySelector('.volume-slider');
-    const canvas = player.querySelector('canvas.spectrum');
-    const ctx = canvas.getContext('2d');
-
-    // Load audio source
-    audio.src = player.getAttribute('data-src');
-    audio.volume = volumeSlider.value;
-
-    // Play/Pause toggle
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playBtn.textContent = '⏸️';
-        startVisualizer();
-      } else {
-        audio.pause();
-        playBtn.textContent = '▶️';
-        stopVisualizer();
-      }
-    });
-
-    // Update duration when metadata is loaded
-    audio.addEventListener('loadedmetadata', () => {
-      durationEl.textContent = formatTime(audio.duration);
-    });
-
-    // Update progress bar and current time during playback
-    audio.addEventListener('timeupdate', () => {
-      const percent = (audio.currentTime / audio.duration) * 100;
-      progress.style.width = percent + '%';
-      currentTimeEl.textContent = formatTime(audio.currentTime);
-    });
-
-    // Seek audio when clicking progress bar
-    progressContainer.addEventListener('click', e => {
-      const rect = progressContainer.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const width = rect.width;
-      const newTime = (clickX / width) * audio.duration;
-      audio.currentTime = newTime;
-    });
-
-    // Volume control
-    volumeSlider.addEventListener('input', () => {
+      // Load audio source
+      audio.src = player.getAttribute('data-src');
       audio.volume = volumeSlider.value;
+
+      // Play/Pause toggle
+      playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+          playBtn.textContent = '⏸️';
+          startVisualizer();
+        } else {
+          audio.pause();
+          playBtn.textContent = '▶️';
+          stopVisualizer();
+        }
+      });
+
+      // Update duration when metadata is loaded
+      audio.addEventListener('loadedmetadata', () => {
+        durationEl.textContent = formatTime(audio.duration);
+      });
+
+      // Update progress bar and current time during playback
+      audio.addEventListener('timeupdate', () => {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = percent + '%';
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+      });
+
+      // Seek audio when clicking progress bar
+      progressContainer.addEventListener('click', e => {
+        const rect = progressContainer.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        const newTime = (clickX / width) * audio.duration;
+        audio.currentTime = newTime;
+      });
+
+      // Volume control
+      volumeSlider.addEventListener('input', () => {
+        audio.volume = volumeSlider.value;
+      });
+
+      // Format time helper function
+      function formatTime(sec) {
+        const minutes = Math.floor(sec / 60) || 0;
+        const seconds = Math.floor(sec % 60) || 0;
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      }
+
+      // Audio context and analyser for spectrum
+      let audioCtx, analyser, source, dataArray, animationId;
+
+      function startVisualizer() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          analyser = audioCtx.createAnalyser();
+          source = audioCtx.createMediaElementSource(audio);
+          source.connect(analyser);
+          analyser.connect(audioCtx.destination);
+          analyser.fftSize = 64;
+          const bufferLength = analyser.frequencyBinCount;
+          dataArray = new Uint8Array(bufferLength);
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        draw();
+      }
+
+      function stopVisualizer() {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+          clearCanvas();
+        }
+      }
+
+      function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#C3D0B5';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      function draw() {
+        animationId = requestAnimationFrame(draw);
+        analyser.getByteFrequencyData(dataArray);
+
+        ctx.fillStyle = '#C3D0B5';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const barWidth = (canvas.width / dataArray.length) * 1.2;
+        let x = 0;
+        for (let i = 0; i < dataArray.length; i++) {
+          const barHeight = dataArray[i];
+          ctx.fillStyle = '#7c987a';
+          ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+          x += barWidth + 2;
+        }
+      }
     });
-
-    // Format time helper function
-    function formatTime(sec) {
-      const minutes = Math.floor(sec / 60) || 0;
-      const seconds = Math.floor(sec % 60) || 0;
-      return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-    }
-
-    // Audio context and analyser for spectrum
-    let audioCtx, analyser, source, dataArray, animationId;
-
-    function startVisualizer() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        analyser = audioCtx.createAnalyser();
-        source = audioCtx.createMediaElementSource(audio);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        analyser.fftSize = 64;
-        const bufferLength = analyser.frequencyBinCount;
-        dataArray = new Uint8Array(bufferLength);
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      draw();
-    }
-
-    function stopVisualizer() {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-        animationId = null;
-        clearCanvas();
-      }
-    }
-
-    function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Optional: draw background
-      ctx.fillStyle = '#C3D0B5';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    }
-
-    function draw() {
-      animationId = requestAnimationFrame(draw);
-      analyser.getByteFrequencyData(dataArray);
-
-      ctx.fillStyle = '#C3D0B5';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const barWidth = (canvas.width / dataArray.length) * 1.2;
-      let x = 0;
-      for (let i = 0; i < dataArray.length; i++) {
-        const barHeight = dataArray[i];
-        ctx.fillStyle = '#7c987a';
-        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-        x += barWidth + 2;
-      }
-    }
-  });
-</script>
-
+  </script>
 </body>
 </html>
