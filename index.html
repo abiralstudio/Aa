@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Abiral Studios</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Professional audio production by Abiral Studios - mixing, mastering, custom beats and vocal editing. 5+ years of FL Studio expertise."/>
+  <meta name="keywords" content="audio production, mixing, mastering, custom beats, vocal mixing, FL Studio, Abiral Studios"/>
+  <meta name="author" content="Abiral Studios"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Montserrat', sans-serif;
@@ -50,7 +53,6 @@
       color: #2a2a2a;
       text-decoration: none;
       font-weight: 600;
-      transition: color 0.3s ease;
     }
     .nav-list li a:hover {
       color: #A7C1A8;
@@ -108,18 +110,14 @@
       justify-content: center;
       gap: 40px;
       flex-wrap: wrap;
-      margin-top: 30px;
     }
     .track {
       background: #D1D8BE;
       padding: 20px 30px;
       border-radius: 10px;
-      width: 320px;
+      width: 300px;
       text-align: center;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       user-select: none;
     }
     .track-name {
@@ -133,37 +131,68 @@
       outline: none;
       margin-bottom: 10px;
     }
-    .controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 10px;
-    }
-    button {
-      background: #A7C1A8;
-      border: none;
-      border-radius: 5px;
-      padding: 8px 14px;
-      font-weight: 600;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-    }
-    button:hover {
-      background: #7c987a;
-    }
+
+    /* Volume slider styling */
     input[type=range] {
-      cursor: pointer;
-    }
-    canvas.waveform {
-      width: 100%;
-      height: 50px;
+      -webkit-appearance: none;
+      width: 120px;
+      height: 8px;
+      background: #C3D0B5; /* light green background track */
       border-radius: 5px;
-      background-color: #C3D0B5;
-      margin-top: 10px;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin: 0 auto;
+      display: block;
     }
+
+    /* Track for Firefox */
+    input[type=range]::-moz-range-track {
+      background: #C3D0B5;
+      border-radius: 5px;
+      height: 8px;
+    }
+
+    /* Thumb for Firefox */
+    input[type=range]::-moz-range-thumb {
+      background: #7c987a; /* medium green thumb */
+      border: none;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    /* Webkit Track */
+    input[type=range]::-webkit-slider-runnable-track {
+      background: #C3D0B5;
+      border-radius: 5px;
+      height: 8px;
+    }
+
+    /* Webkit Thumb */
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      margin-top: -5px; /* center the thumb */
+      background: #7c987a;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      border: none;
+    }
+
+    input[type=range]:hover::-webkit-slider-thumb {
+      background: #6a7c65; /* slightly darker on hover */
+    }
+
+    input[type=range]:hover::-moz-range-thumb {
+      background: #6a7c65;
+    }
+
     footer.footer {
       background-color: #D1D8BE;
       color: #2a2a2a;
@@ -174,21 +203,14 @@
     }
 
     /* Responsive */
-    @media (max-width: 700px) {
-      .services {
-        grid-template-columns: 1fr 1fr;
+    @media(max-width: 600px) {
+      .audio-tracks {
+        flex-direction: column;
+        align-items: center;
       }
       .track {
-        width: 100%;
-      }
-    }
-    @media (max-width: 450px) {
-      .services {
-        grid-template-columns: 1fr;
-      }
-      .nav-list {
-        flex-direction: column;
-        gap: 10px;
+        width: 90%;
+        margin-bottom: 20px;
       }
     }
   </style>
@@ -228,30 +250,17 @@
     <h3 style="text-align:center; margin-bottom: 30px; color: #2a2a2a;">Work Preview</h3>
 
     <div class="audio-tracks">
-      <!-- Track 1 -->
-      <div class="track" data-track-id="1">
+      <div class="track">
         <p class="track-name">Westcoast Beat</p>
-        <audio id="audio1" controls preload="metadata" src="track1.mp3"></audio>
-
-        <div class="controls">
-          <label for="volume1">Volume:</label>
-          <input type="range" id="volume1" min="0" max="1" step="0.01" value="1" />
-          <button id="autoplay1">Autoplay Off</button>
-        </div>
-        <canvas id="waveform1" class="waveform"></canvas>
+        <audio controls id="audio1" src="track1.mp3" type="audio/mpeg"></audio>
+        <input type="range" min="0" max="1" step="0.01" value="1" 
+               oninput="document.getElementById('audio1').volume=this.value"/>
       </div>
-
-      <!-- Track 2 -->
-      <div class="track" data-track-id="2">
+      <div class="track">
         <p class="track-name">Sexy Drill Beat</p>
-        <audio id="audio2" controls preload="metadata" src="track2.mp3"></audio>
-
-        <div class="controls">
-          <label for="volume2">Volume:</label>
-          <input type="range" id="volume2" min="0" max="1" step="0.01" value="1" />
-          <button id="autoplay2">Autoplay Off</button>
-        </div>
-        <canvas id="waveform2" class="waveform"></canvas>
+        <audio controls id="audio2" src="track2.mp3" type="audio/mpeg"></audio>
+        <input type="range" min="0" max="1" step="0.01" value="1" 
+               oninput="document.getElementById('audio2').volume=this.value"/>
       </div>
     </div>
   </section>
@@ -259,102 +268,5 @@
   <footer class="footer">
     <p>&copy; 2025 Abiral Studios — Gangtok, Sikkim</p>
   </footer>
-
-  <script>
-    // Setup Audio Context & Waveform Visualization
-    function setupAudioVisualization(audioElement, canvas) {
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 256;
-      const source = audioCtx.createMediaElementSource(audioElement);
-      source.connect(analyser);
-      analyser.connect(audioCtx.destination);
-
-      const bufferLength = analyser.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
-
-      const canvasCtx = canvas.getContext('2d');
-      const WIDTH = canvas.width = canvas.clientWidth * devicePixelRatio;
-      const HEIGHT = canvas.height = canvas.clientHeight * devicePixelRatio;
-
-      function draw() {
-        requestAnimationFrame(draw);
-        analyser.getByteFrequencyData(dataArray);
-
-        canvasCtx.fillStyle = '#C3D0B5';
-        canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
-
-        const barWidth = (WIDTH / bufferLength) * 1.5;
-        let x = 0;
-
-        for (let i = 0; i < bufferLength; i++) {
-          const barHeight = dataArray[i] / 2;
-          canvasCtx.fillStyle = '#7c987a';
-          canvasCtx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
-          x += barWidth + 1;
-        }
-      }
-      draw();
-
-      return { audioCtx, analyser, source };
-    }
-
-    // Wait for DOM to load
-    window.addEventListener('DOMContentLoaded', () => {
-      // Track 1 Elements
-      const audio1 = document.getElementById('audio1');
-      const volume1 = document.getElementById('volume1');
-      const autoplayBtn1 = document.getElementById('autoplay1');
-      const canvas1 = document.getElementById('waveform1');
-      let audioCtx1 = null;
-
-      // Track 2 Elements
-      const audio2 = document.getElementById('audio2');
-      const volume2 = document.getElementById('volume2');
-      const autoplayBtn2 = document.getElementById('autoplay2');
-      const canvas2 = document.getElementById('waveform2');
-      let audioCtx2 = null;
-
-      // Volume controls
-      volume1.addEventListener('input', () => {
-        audio1.volume = volume1.value;
-      });
-      volume2.addEventListener('input', () => {
-        audio2.volume = volume2.value;
-      });
-
-      // Autoplay toggles
-      function toggleAutoplay(audioEl, button) {
-        if (audioEl.autoplay) {
-          audioEl.autoplay = false;
-          button.textContent = 'Autoplay Off';
-        } else {
-          audioEl.autoplay = true;
-          button.textContent = 'Autoplay On';
-          // Play immediately if toggled on
-          audioEl.play().catch(() => {});
-        }
-      }
-      autoplayBtn1.addEventListener('click', () => toggleAutoplay(audio1, autoplayBtn1));
-      autoplayBtn2.addEventListener('click', () => toggleAutoplay(audio2, autoplayBtn2));
-
-      // Setup audio context and visualization on user interaction to allow context resume
-      function initAudio() {
-        if (!audioCtx1) {
-          audioCtx1 = setupAudioVisualization(audio1, canvas1).audioCtx;
-        }
-        if (!audioCtx2) {
-          audioCtx2 = setupAudioVisualization(audio2, canvas2).audioCtx;
-        }
-        // Remove event listener after init
-        window.removeEventListener('click', initAudio);
-        window.removeEventListener('keydown', initAudio);
-      }
-
-      // Chrome requires user interaction before AudioContext runs
-      window.addEventListener('click', initAudio);
-      window.addEventListener('keydown', initAudio);
-    });
-  </script>
 </body>
 </html>
