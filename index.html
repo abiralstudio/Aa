@@ -3,328 +3,304 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Abiral Studios - Music Production & Beats</title>
-  <meta name="description" content="Abiral Studios - Professional music production, mixing, mastering, and custom beats." />
-  <meta name="keywords" content="music production, mixing, mastering, beats, audio player, Abiral Studios" />
-  <meta name="author" content="Abiral Chettri" />
-
+  <title>Home - Abiral Music</title>
   <style>
-    /* === Basic Reset & Fonts === */
+    /* General body and font */
     body {
-      margin: 0; 
-      font-family: 'Montserrat', sans-serif;
-      background-color: #f9f9f9;
-      color: #2a2a2a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #EEEFE0;
+      color: #3a3a35;
+      margin: 0;
+      padding: 0;
       line-height: 1.6;
-      padding: 20px;
       display: flex;
       flex-direction: column;
-      align-items: center;
       min-height: 100vh;
     }
-    h1 {
-      margin-bottom: 10px;
-      color: #4a4a4a;
-    }
-    p {
-      max-width: 600px;
-      text-align: center;
-      margin-bottom: 30px;
-      color: #555;
+
+    /* Container for content */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      flex-grow: 1;
     }
 
-    /* === Audio Player Styles === */
-    .player {
-      background: #D1D8BE;
-      padding: 20px 30px;
-      border-radius: 12px;
-      width: 340px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      margin: 20px auto;
-      user-select: none;
-      color: #2a2a2a;
-    }
-    .track-title {
-      font-weight: 700;
-      font-size: 1.3em;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    .controls {
+    /* Header/Nav styles (same as contact.html) */
+    .header .container {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      justify-content: center;
-      margin-bottom: 15px;
+      padding: 20px;
+      background-color: #D1D8BE;
     }
-    button.play-pause {
-      background-color: #7c987a;
-      border: none;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
+    .logo {
+      color: #150505;
+      font-weight: 800;
+      font-size: 2rem;
+      margin: 0;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #150505;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover,
+    nav a.active {
+      color: #A7C1A8;
+      font-weight: 700;
+    }
+
+    /* Footer styling (same as contact) */
+    .footer {
+      text-align: center;
+      padding: 15px 10px;
+      background-color: #D1D8BE;
+      color: #150505;
+      font-weight: 600;
+      margin-top: 40px;
+      font-size: 1rem;
+    }
+
+    /* Homepage hero section */
+    .hero {
+      background-color: #A7C1A8;
       color: white;
-      font-size: 20px;
+      text-align: center;
+      padding: 60px 20px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    .hero h1 {
+      margin: 0 0 15px 0;
+      font-size: 3rem;
+      font-weight: 800;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Audio player container */
+    .audio-tracks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    .track {
+      background: #D1D8BE;
+      border-radius: 12px;
+      padding: 20px 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+      color: #150505;
+      font-weight: 700;
+      font-size: 1.3rem;
+      position: relative;
+    }
+
+    /* Custom audio styling */
+    audio {
+      width: 100%;
+      outline: none;
+      margin-top: 12px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: #f0f0f0;
+      height: 5px;
+      border-radius: 10px;
+      overflow: hidden;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
-    button.play-pause:hover {
-      background-color: #6a7c65;
+    audio::-webkit-media-controls-panel {
+      background-color: transparent !important;
     }
-    .progress-container {
-      position: relative;
-      width: 100%;
-      height: 8px;
-      background: #C3D0B5;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .progress {
-      background-color: #7c987a;
-      height: 8px;
-      width: 0%;
-      border-radius: 5px;
-      transition: width 0.1s linear;
-    }
-    .time {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85em;
-      margin-top: 5px;
-      color: #4a4a4a;
-    }
-    .volume-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 15px;
-    }
+
+    /* Custom volume slider */
     input[type=range] {
       -webkit-appearance: none;
-      width: 150px;
+      width: 100%;
       height: 8px;
-      background: #C3D0B5;
-      border-radius: 5px;
+      border-radius: 10px;
+      background: #A7C1A8;
       outline: none;
+      margin-top: 15px;
       cursor: pointer;
+      box-shadow: inset 0 0 5px #7b967d;
       transition: background 0.3s ease;
     }
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 18px;
-      height: 18px;
-      background: #7c987a;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
+      background: #D1D8BE;
+      border: 2px solid #7b967d;
       cursor: pointer;
-      border: none;
-      transition: background 0.3s ease;
-      margin-top: -5px;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      margin-top: -6px;
+      box-shadow: 0 0 5px rgba(167, 193, 168, 0.8);
     }
     input[type=range]:hover::-webkit-slider-thumb {
-      background: #6a7c65;
+      background-color: #7b967d;
+      border-color: #A7C1A8;
     }
     input[type=range]::-moz-range-thumb {
-      background: #7c987a;
-      border: none;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      width: 18px;
-      height: 18px;
+      background: #D1D8BE;
+      border: 2px solid #7b967d;
       cursor: pointer;
-      transition: background 0.3s ease;
+      box-shadow: 0 0 5px rgba(167, 193, 168, 0.8);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
     }
     input[type=range]:hover::-moz-range-thumb {
-      background: #6a7c65;
-    }
-    canvas.spectrum {
-      display: block;
-      margin: 25px auto 0;
-      background: #C3D0B5;
-      border-radius: 10px;
-      width: 320px;
-      height: 100px;
+      background-color: #7b967d;
+      border-color: #A7C1A8;
     }
 
-    /* Responsive */
-    @media (max-width: 380px) {
-      .player {
-        width: 90vw;
-        padding: 15px;
-      }
-      input[type=range] {
-        width: 120px;
-      }
-      canvas.spectrum {
-        width: 280px;
-        height: 90px;
-      }
+    /* Audio spectrum container */
+    .spectrum {
+      width: 100%;
+      height: 60px;
+      background: #D1D8BE;
+      border-radius: 12px;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
     }
+    .bar {
+      position: absolute;
+      bottom: 0;
+      width: 3px;
+      background-color: #7b967d;
+      opacity: 0.8;
+      border-radius: 2px;
+      transition: height 0.1s ease;
+    }
+
   </style>
 </head>
 <body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Abiral Music</h1>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-  <h1>Welcome to Abiral Studios</h1>
-  <p>Your go-to place for professional music production, mixing, mastering, and custom beats. Enjoy our exclusive audio samples below!</p>
+  <main class="container">
+    <section class="hero">
+      <h1>Your Sound, Perfected</h1>
+      <p>Crafting professional audio with 5+ years of experience using FL Studio. Get custom beats, mixing, mastering, and vocal editing tailored to your unique style.</p>
+    </section>
 
-  <!-- Audio Player 1 -->
-  <div class="player" data-title="Westcoast Beat" data-src="track1.mp3">
-    <div class="track-title">Westcoast Beat</div>
-    <audio></audio>
-
-    <div class="controls">
-      <button class="play-pause" aria-label="Play/Pause">▶️</button>
-      <div class="progress-container" aria-label="Audio progress">
-        <div class="progress"></div>
+    <section class="audio-tracks">
+      <div class="track" data-src="track1.mp3" data-title="Westcoast Beat">
+        Westcoast Beat
+        <audio controls></audio>
+        <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" aria-label="Volume Control" />
+        <div class="spectrum"></div>
       </div>
-    </div>
-
-    <div class="time">
-      <span class="current-time">0:00</span>
-      <span class="duration">0:00</span>
-    </div>
-
-    <div class="volume-container">
-      <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume control"/>
-    </div>
-
-    <canvas class="spectrum" width="320" height="100"></canvas>
-  </div>
-
-  <!-- Audio Player 2 -->
-  <div class="player" data-title="Sexy Drill Beat" data-src="track2.mp3">
-    <div class="track-title">Sexy Drill Beat</div>
-    <audio></audio>
-
-    <div class="controls">
-      <button class="play-pause" aria-label="Play/Pause">▶️</button>
-      <div class="progress-container" aria-label="Audio progress">
-        <div class="progress"></div>
+      <div class="track" data-src="track2.mp3" data-title="Sexy Drill Beat">
+        Sexy Drill Beat
+        <audio controls></audio>
+        <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" aria-label="Volume Control" />
+        <div class="spectrum"></div>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="time">
-      <span class="current-time">0:00</span>
-      <span class="duration">0:00</span>
-    </div>
-
-    <div class="volume-container">
-      <input type="range" class="volume-slider" min="0" max="1" step="0.01" value="0.8" aria-label="Volume control"/>
-    </div>
-
-    <canvas class="spectrum" width="320" height="100"></canvas>
-  </div>
+  <footer class="footer">
+    <p>&copy; 2025 Abiral Music. All rights reserved.</p>
+  </footer>
 
   <script>
-    document.querySelectorAll('.player').forEach(player => {
-      const audio = player.querySelector('audio');
-      const playBtn = player.querySelector('.play-pause');
-      const progressContainer = player.querySelector('.progress-container');
-      const progress = player.querySelector('.progress');
-      const currentTimeEl = player.querySelector('.current-time');
-      const durationEl = player.querySelector('.duration');
-      const volumeSlider = player.querySelector('.volume-slider');
-      const canvas = player.querySelector('canvas.spectrum');
-      const ctx = canvas.getContext('2d');
+    // Setup audio players with spectrum and volume controls
+    document.querySelectorAll('.track').forEach(track => {
+      const audio = track.querySelector('audio');
+      const volumeSlider = track.querySelector('.volume-slider');
+      const spectrum = track.querySelector('.spectrum');
+      const src = track.dataset.src;
 
-      // Load audio source
-      audio.src = player.getAttribute('data-src');
-      audio.volume = volumeSlider.value;
-
-      // Play/Pause toggle
-      playBtn.addEventListener('click', () => {
-        if (audio.paused) {
-          audio.play();
-          playBtn.textContent = '⏸️';
-          startVisualizer();
-        } else {
-          audio.pause();
-          playBtn.textContent = '▶️';
-          stopVisualizer();
-        }
-      });
-
-      // Update duration when metadata is loaded
-      audio.addEventListener('loadedmetadata', () => {
-        durationEl.textContent = formatTime(audio.duration);
-      });
-
-      // Update progress bar and current time during playback
-      audio.addEventListener('timeupdate', () => {
-        const percent = (audio.currentTime / audio.duration) * 100;
-        progress.style.width = percent + '%';
-        currentTimeEl.textContent = formatTime(audio.currentTime);
-      });
-
-      // Seek audio when clicking progress bar
-      progressContainer.addEventListener('click', e => {
-        const rect = progressContainer.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const width = rect.width;
-        const newTime = (clickX / width) * audio.duration;
-        audio.currentTime = newTime;
-      });
+      audio.src = src;
 
       // Volume control
-      volumeSlider.addEventListener('input', () => {
-        audio.volume = volumeSlider.value;
+      volumeSlider.addEventListener('input', e => {
+        audio.volume = e.target.value;
       });
 
-      // Format time helper function
-      function formatTime(sec) {
-        const minutes = Math.floor(sec / 60) || 0;
-        const seconds = Math.floor(sec % 60) || 0;
-        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+      // Audio Spectrum setup
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 64;
+      const source = audioCtx.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+
+      // Create bars
+      const bars = [];
+      for (let i = 0; i < bufferLength; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        bar.style.left = (i * 5) + 'px';
+        bar.style.width = '3px';
+        bar.style.height = '10px';
+        spectrum.appendChild(bar);
+        bars.push(bar);
       }
 
-      // Audio context and analyser for spectrum
-      let audioCtx, analyser, source, dataArray, animationId;
-
-      function startVisualizer() {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-          analyser = audioCtx.createAnalyser();
-          source = audioCtx.createMediaElementSource(audio);
-          source.connect(analyser);
-          analyser.connect(audioCtx.destination);
-          analyser.fftSize = 64;
-          const bufferLength = analyser.frequencyBinCount;
-          dataArray = new Uint8Array(bufferLength);
+      function animateSpectrum() {
+        requestAnimationFrame(animateSpectrum);
+        analyser.getByteFrequencyData(dataArray);
+        for (let i = 0; i < bufferLength; i++) {
+          let barHeight = dataArray[i] / 2;
+          bars[i].style.height = barHeight + 'px';
+          bars[i].style.opacity = Math.min(barHeight / 30, 1);
         }
+      }
+
+      audio.addEventListener('play', () => {
+        // Resume audio context on user interaction
         if (audioCtx.state === 'suspended') {
           audioCtx.resume();
         }
-        draw();
-      }
+        animateSpectrum();
+      });
 
-      function stopVisualizer() {
-        if (animationId) {
-          cancelAnimationFrame(animationId);
-          animationId = null;
-          clearCanvas();
-        }
-      }
+      audio.addEventListener('pause', () => {
+        // Clear spectrum bars height on pause
+        bars.forEach(bar => (bar.style.height = '10px'));
+      });
 
-      function clearCanvas() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#C3D0B5';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
-
-      function draw() {
-        animationId = requestAnimationFrame(draw);
-        analyser.getByteFrequencyData(dataArray);
-
-        ctx.fillStyle = '#C3D0B5';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        const barWidth = (canvas.width / dataArray.length) * 1.2;
-        let x = 0;
-        for (let i = 0; i < dataArray.length; i++) {
-          const barHeight = dataArray[i];
-          ctx.fillStyle = '#7c987a';
-          ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-          x += barWidth + 2;
-        }
-      }
     });
   </script>
 </body>
