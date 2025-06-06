@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About Us | Abiral Studios</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
       --accent: #a987ff;
@@ -12,15 +12,170 @@
       --primary-fg: #fff;
       --primary-bg: #18162a;
       --accent-light: #dcd2fb;
-      --glow: 0 0 16px #a987ff99, 0 0 40px #a987ff33;
       --shadow: 0 7px 32px #7b3ff244;
+      --glow: 0 0 32px #a987ff66, 0 0 12px #fff7;
+      --header-height: 64px;
     }
-    body {
+    html, body {
       background: var(--primary-bg);
       color: var(--primary-fg);
       font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    body {
+      padding-top: var(--header-height);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .header {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--primary-bg);
+      box-shadow: 0 4px 24px #271d4911;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: var(--header-height);
+    }
+    .header-inner {
+      width: 100%;
+      height: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .logo {
+      font-size: 2.05em;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin: 0 auto;
+      text-shadow: 0 2px 14px var(--accent), 0 1px 0 #fff1;
+      user-select: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 50%;
+      white-space: nowrap;
+      z-index: 1202;
+      line-height: 1;
+      transition: font-size 0.2s;
+      text-decoration: none;
+    }
+    .hamburger {
+      display: block;
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      z-index: 1203;
+      outline: none;
+      transition: filter 0.2s;
+    }
+    .hamburger span {
+      display: block;
+      height: 3.5px;
+      width: 33px;
+      border-radius: 2.5px;
+      background: var(--accent);
+      margin: 7px auto;
+      transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      top: var(--header-height);
+      background: var(--primary-bg);
+      box-shadow: var(--shadow);
+      border-radius: 0 0 18px 18px;
+      padding: 0 30px;
+      transition: max-height 0.3s, opacity 0.3s;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      z-index: 1201;
+    }
+    .nav.open {
+      opacity: 1;
+      max-height: 350px;
+      padding: 18px 30px 18px 30px;
+    }
+    .nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      margin: 0;
+      gap: 16px;
+    }
+    .nav ul li a {
+      color: var(--primary-fg);
+      font-weight: 700;
+      font-size: 1.13em;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 7px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav ul li a:hover,
+    .nav ul li a:focus {
+      background: var(--accent);
+      color: var(--primary-bg);
+      outline: none;
+    }
+    @media (min-width: 850px) {
+      .hamburger {
+        display: none;
+      }
+      .nav {
+        opacity: 1;
+        position: static;
+        background: none;
+        box-shadow: none;
+        max-height: none;
+        padding: 0;
+        border-radius: 0;
+      }
+      .nav ul {
+        flex-direction: row;
+        gap: 27px;
+      }
+    }
+    @media (max-width: 849px) {
+      .header-inner {
+        justify-content: flex-start;
+      }
+      .logo {
+        left: 18px;
+        transform: none;
+        position: relative;
+        font-size: 1.6em;
+      }
     }
     .about-hero {
       background: linear-gradient(120deg, #1b1a24 70%, #271d49 100%);
@@ -81,322 +236,56 @@
     .team-section h2,
     .join-section h2 {
       color: var(--accent);
-      margin-bottom: 18px;
-      letter-spacing: 0.9px;
-      font-size: 1.35em;
-      text-align: center;
-      text-shadow: 0 2px 14px var(--accent);
-    }
-    .about-text {
-      font-size: 1.15em;
-      color: #e0d5f9;
-      line-height: 1.8;
-      text-align: center;
-      text-shadow: 0 1.5px 10px #7b3ff233;
-      margin-bottom: 0;
-      margin-top: 0;
-      max-width: 680px;
-    }
-    .about-highlight {
-      color: var(--accent);
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .about-bullets {
-      margin: 28px auto 0 auto;
-      padding: 0;
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 26px;
-      justify-content: center;
-      max-width: 700px;
-    }
-    .about-bullets li {
-      background: rgba(169,135,255,0.08);
-      color: #e9e7fc;
-      border-left: 4px solid var(--accent);
-      border-radius: 8px;
-      padding: 18px 24px;
-      font-size: 1.06em;
-      line-height: 1.5;
-      min-width: 180px;
-      max-width: 320px;
-      margin-bottom: 0;
-      font-weight: 500;
-      box-shadow: 0 1.5px 10px #7b3ff233;
-      text-align: left;
-    }
-    .team-section {
-      margin-top: 38px;
-    }
-    .team-list {
-      display: flex;
-      gap: 36px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      width: 100%;
-    }
-    .team-member {
-      background: linear-gradient(120deg, #2a2350 60%, var(--accent) 110%);
-      box-shadow: 0 4px 24px #a987ff33;
-      border-radius: 16px;
-      padding: 32px 26px 22px 26px;
-      text-align: center;
-      min-width: 220px;
-      margin-bottom: 18px;
-      flex: 1 1 220px;
-      max-width: 300px;
-      transition: box-shadow 0.2s, transform 0.2s;
-      border: 2.5px solid transparent;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .team-member:hover {
-      box-shadow: 0 4px 32px var(--accent), 0 0 12px #fff5;
-      border: 2.5px solid var(--hover);
-      transform: translateY(-7px) scale(1.03);
-    }
-    .team-avatar {
-      width: 72px;
-      height: 72px;
-      background: var(--accent);
-      border-radius: 50%;
-      margin-bottom: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 2.2em;
-      font-weight: bold;
-      box-shadow: 0 2px 18px var(--accent);
-      user-select: none;
-    }
-    .team-name {
-      font-size: 1.22em;
-      font-weight: bold;
-      color: #fff;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
-      text-shadow: 0 2px 8px #7b3ff266;
-    }
-    .team-role {
-      font-size: 1em;
-      color: #d1c8f5;
-      font-style: italic;
-      margin-bottom: 12px;
-      letter-spacing: 0.3px;
-    }
-    .team-bio {
-      color: #e3daff;
-      font-size: 1em;
-      margin-bottom: 0;
-      text-shadow: 0 1px 4px #7b3ff222;
-    }
-    .join-section {
-      margin-top: 38px;
-      margin-bottom: 60px;
-      text-align: center;
-      background: linear-gradient(120deg, #271d49 0%, #221c40 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: 40px;
-    }
-    .join-section h2 {
-      margin-bottom: 12px;
-      color: var(--accent);
-      font-size: 1.22em;
-      text-shadow: 0 2px 14px var(--accent);
-    }
-    .join-section p {
-      color: #f0eaff;
-      font-size: 1.15em;
-      margin-bottom: 22px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .join-btn {
-      display: inline-block;
-      font-size: 1.08em;
-      padding: 13px 40px;
-      border-radius: 12px;
-      border: none;
-      background: var(--accent);
-      color: #fff;
-      font-weight: 700;
-      letter-spacing: 0.7px;
-      box-shadow: 0 0 10px 2px var(--hover)99, var(--glow);
-      margin-top: 10px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: background 0.2s, box-shadow 0.22s, transform 0.22s;
-      text-decoration: none;
-    }
-    .join-btn:hover {
-      background: var(--hover);
-      color: var(--primary-bg);
-      transform: scale(1.04);
-      box-shadow: 0 0 18px 4px var(--accent), 0 0 18px 2px var(--hover);
-    }
-    @media (max-width: 900px) {
-      .team-list { flex-direction: column; gap: 22px;}
-      .main-container { padding: 24px 2vw 0 2vw;}
-      .about-section, .team-section, .join-section { padding: 28px 7vw 24px 7vw;}
-    }
-    @media (max-width: 600px) {
-      .about-section, .team-section, .join-section { padding: 12px 2vw 12px 2vw;}
-      .main-container { padding: 2vw;}
-      .team-member { min-width: 0; max-width: 98vw;}
-      .about-hero h1 { font-size: 1.45em; }
-      .about-hero p, .about-text { font-size: 1em;}
-      .about-bullets { flex-direction: column; gap: 12px;}
-      .about-hero .hero-underline { width: 40vw; min-width: 38px; max-width: 96px;}
-      .about-section, .team-section, .join-section { border-radius: 12px; }
     }
   </style>
 </head>
 <body>
   <header class="header">
-    <div class="container center-header">
-      <h1 class="logo">Abiral Studios</h1>
-      <button class="hamburger" id="hamburger" aria-label="Open navigation menu">
-        <span></span><span></span><span></span>
+    <div class="header-inner">
+      <a class="logo" href="index.html">Abiral Studios</a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <nav>
-        <ul class="nav-list" id="navList">
+      <nav class="nav" id="nav">
+        <ul>
           <li><a href="index.html">Home</a></li>
-          <li class="active"><a href="about.html">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="books.html">Books</a></li>
-          <li><a href="#contact-section">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
-  <section class="about-hero">
-    <h1>About Me</h1>
-    <span class="hero-underline"></span>
-    <p>
-      Hi, I’m <span class="about-highlight">Abiral Chettri</span> from Gangtok, Sikkim.<br>
-      At 23, I’ve spent the past 5 years living and breathing music—from the first beat to the final master, always chasing that perfect sound.<br>
-      My main tool is <span class="about-highlight">FL Studio</span>, but my real power comes from experience, creativity, and a love for making music that connects people.<br>
-      Every song is a new story, and I put my knowledge, intuition, and heart into every mix and every beat.
-    </p>
-  </section>
-
-  <section class="about-section">
-    <h2>My Philosophy & Process</h2>
-    <p class="about-text">
-      Music is more than just sound—it's emotion, energy, and connection. My philosophy is simple: <span class="about-highlight">never settle</span> for average.<br>
-      I listen deeply to every project, collaborating with you to make sure your vision comes through—louder, clearer, and more powerful than you imagined.<br>
-      Whether you want a hard-hitting beat, a clean and spacious mix, or your vocals to stand out, I use every trick in the book and a few of my own to get you there.
-    </p>
-    <ul class="about-bullets">
-      <li>
-        <strong>Personal Touch:</strong> I treat every project like it’s my own song, giving it time, detail, and honest feedback.
-      </li>
-      <li>
-        <strong>End-to-End Production:</strong> From songwriting ideas to final mastering—one studio, one vision.
-      </li>
-      <li>
-        <strong>Modern & Classic:</strong> Inspired by today’s sound but rooted in the timeless feel of classic music.
-      </li>
-      <li>
-        <strong>Community Driven:</strong> I love working with upcoming artists and believe in building each other up.
-      </li>
-    </ul>
-  </section>
-
-  <section class="team-section">
-    <h2>The Team</h2>
-    <ul class="team-list">
-      <li class="team-member">
-        <div class="team-avatar">AC</div>
-        <div class="team-name">Abiral Chettri</div>
-        <div class="team-role">Producer & Engineer</div>
-        <div class="team-bio">
-          Founder of Abiral Studios.<br>
-          Producer, mixing & mastering engineer, beat maker, and sound explorer. I handle everything from beat creation to final polish, always aiming for music that moves you.
-        </div>
-      </li>
-      <li class="team-member">
-        <div class="team-avatar">P</div>
-        <div class="team-name">Passang aka Promise</div>
-        <div class="team-role">Artist</div>
-        <div class="team-bio">
-          The voice and the vibe. Promise brings original lyrics and soul to our productions, always pushing for something fresh. A true collaborator and creative partner.
-        </div>
-      </li>
-    </ul>
-  </section>
-
-  <section class="join-section" id="join-team">
-    <h2>Join Our Team</h2>
-    <p>
-      Are you an artist, songwriter, producer, or just passionate about music?<br>
-      Abiral Studios is always open to new talent and creative minds.<br>
-      <b>If you’re ready to grow, learn, and make music that stands out—let’s connect!</b>
-    </p>
-    <a href="#contact-section" class="join-btn">Join Abiral Studios</a>
-  </section>
-
-  <section id="contact-section" class="contact-section container" style="margin-top:50px;">
-    <h2 class="contact-title">Contact & Join</h2>
-    <form class="contact-form" id="contactForm" autocomplete="off">
-      <label for="name">Your Name</label>
-      <input type="text" id="name" name="name" required>
-      <label for="email">Your Email</label>
-      <input type="email" id="email" name="email" required>
-      <label for="message">Message</label>
-      <textarea id="message" name="message" required placeholder="How can we help you? (If you're applying to join our team, tell us why!)"></textarea>
-      <button type="submit">Send Message</button>
-      <div id="formStatus"></div>
-    </form>
-    <div style="text-align:center; margin-top:28px; color:#b5aaf1;">
-      <p>Or email us directly at <a href="mailto:abiralchettri34@gmail.com" style="color:var(--accent);text-decoration:underline;">abiralchettri34@gmail.com</a></p>
-      <p>Visit us: Gangtok, Sikkim</p>
-    </div>
-  </section>
-  <a href="#contact-section" class="floating-contact-btn" title="Join or Contact us">✉️</a>
-  <footer class="footer">
-    <p>&copy; 2025 Abiral Studios — Gangtok, Sikkim</p>
-  </footer>
+  <main>
+    <section class="about-hero">
+      <h1>About Abiral Studios</h1>
+      <span class="hero-underline"></span>
+      <p>Abiral Studios is dedicated to providing top-notch audio production services. Our team is passionate about music and brings years of expertise in custom beats, mixing, mastering, and vocal editing.</p>
+    </section>
+    <section class="about-section">
+      <h2>Our Mission</h2>
+      <p>To empower artists and creators by delivering professional-grade audio services that elevate their sound and vision.</p>
+    </section>
+    <!-- Add more sections as needed! -->
+  </main>
   <script>
-    // Hamburger menu only (no dark mode)
     const hamburger = document.getElementById('hamburger');
-    const navList = document.getElementById('navList');
-    hamburger.addEventListener('click', () => {
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', function() {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
       hamburger.classList.toggle('active');
-      navList.classList.toggle('open');
+      nav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', !expanded);
     });
-    document.addEventListener('click', function(e) {
-      if (
-        window.innerWidth <= 820 &&
-        !hamburger.contains(e.target) &&
-        !navList.contains(e.target)
-      ) {
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
         hamburger.classList.remove('active');
-        navList.classList.remove('open');
-      }
-    });
-
-    // Contact form
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      let status = document.getElementById('formStatus');
-      status.textContent = '';
-      status.className = '';
-      setTimeout(() => {
-        status.textContent = 'Thank you for getting in touch! We will reply soon.';
-        status.className = 'contact-success';
-        document.getElementById('contactForm').reset();
-      }, 700);
+        nav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
     });
   </script>
 </body>
