@@ -2,209 +2,226 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home - Abiral Music</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abiral Studios</title>
+  <meta name="description" content="Professional audio production by Abiral Studios - mixing, mastering, custom beats and vocal editing. 5+ years of FL Studio expertise."/>
+  <meta name="keywords" content="audio production, mixing, mastering, custom beats, vocal mixing, FL Studio, Abiral Studios"/>
+  <meta name="author" content="Abiral Studios"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* General body and font */
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #EEEFE0;
-      color: #3a3a35;
+      font-family: 'Montserrat', sans-serif;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      background-color: #EEEFE0;
+      color: #2a2a2a;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
-
-    /* Container for content */
+    .header {
+      background-color: #D1D8BE;
+      padding: 30px 0;
+      text-align: center;
+      border-bottom: 4px solid #A7C1A8;
+    }
     .container {
+      width: 90%;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 20px;
-      flex-grow: 1;
     }
-
-    /* Header/Nav styles (same as contact.html) */
-    .header .container {
+    .center-header {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      padding: 20px;
-      background-color: #D1D8BE;
     }
     .logo {
-      color: #150505;
-      font-weight: 800;
-      font-size: 2rem;
-      margin: 0;
+      font-size: 3em;
+      font-weight: bold;
+      color: #2a2a2a;
+      margin-bottom: 10px;
     }
-    nav ul {
+    .nav-list {
       list-style: none;
       display: flex;
-      gap: 25px;
-      margin: 0;
+      gap: 20px;
       padding: 0;
+      justify-content: center;
+      flex-wrap: wrap;
     }
-    nav a {
+    .nav-list li a {
+      color: #2a2a2a;
       text-decoration: none;
-      color: #150505;
       font-weight: 600;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
     }
-    nav a:hover,
-    nav a.active {
+    .nav-list li a:hover {
       color: #A7C1A8;
-      font-weight: 700;
     }
-
-    /* Footer styling (same as contact) */
-    .footer {
-      text-align: center;
-      padding: 15px 10px;
-      background-color: #D1D8BE;
-      color: #150505;
-      font-weight: 600;
-      margin-top: 40px;
-      font-size: 1rem;
-    }
-
-    /* Homepage hero section */
     .hero {
-      background-color: #A7C1A8;
-      color: white;
+      background: #A7C1A8;
+      padding: 80px 20px;
       text-align: center;
-      padding: 60px 20px;
-      border-radius: 10px;
-      margin-bottom: 40px;
+      color: #fff;
     }
-    .hero h1 {
-      margin: 0 0 15px 0;
-      font-size: 3rem;
-      font-weight: 800;
+    .hero-title {
+      font-size: 3.2em;
+      margin-bottom: 20px;
     }
-    .hero p {
-      font-size: 1.3rem;
+    .hero-subtitle {
+      font-size: 1.4em;
       max-width: 700px;
       margin: 0 auto;
-      line-height: 1.5;
+      color: #f0f0f0;
     }
-
-    /* Audio player container */
+    .services-section {
+      padding: 60px 0;
+      background-color: #F5F5EC;
+      flex-grow: 1;
+    }
+    .services-section h3 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #2a2a2a;
+      margin-bottom: 40px;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+    .service {
+      background: #D1D8BE;
+      color: #2a2a2a;
+      text-align: center;
+      padding: 25px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .service:hover {
+      background-color: #A7C1A8;
+      color: white;
+    }
     .audio-tracks {
       display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
       justify-content: center;
-      margin-bottom: 40px;
+      gap: 40px;
+      flex-wrap: wrap;
     }
     .track {
       background: #D1D8BE;
-      border-radius: 12px;
       padding: 20px 30px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 320px;
+      border-radius: 10px;
+      width: 300px;
       text-align: center;
-      color: #150505;
-      font-weight: 700;
-      font-size: 1.3rem;
-      position: relative;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      user-select: none;
     }
-
-    /* Custom audio styling */
+    .track-name {
+      font-weight: 700;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
     audio {
       width: 100%;
       outline: none;
-      margin-top: 12px;
-      -webkit-appearance: none;
-      appearance: none;
-      background: #f0f0f0;
-      height: 5px;
-      border-radius: 10px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    audio::-webkit-media-controls-panel {
-      background-color: transparent !important;
+      margin-bottom: 10px;
     }
 
-    /* Custom volume slider */
+    /* Hide native volume slider in supported browsers */
+    audio::-webkit-media-controls-volume-slider {
+      display: none !important;
+    }
+
+    /* Volume slider styling */
     input[type=range] {
       -webkit-appearance: none;
-      width: 100%;
+      width: 120px;
       height: 8px;
-      border-radius: 10px;
-      background: #A7C1A8;
+      background: #C3D0B5; /* light green background track */
+      border-radius: 5px;
       outline: none;
-      margin-top: 15px;
       cursor: pointer;
-      box-shadow: inset 0 0 5px #7b967d;
+      transition: background 0.3s ease;
+      margin: 0 auto;
+      display: block;
+    }
+
+    input[type=range]::-moz-range-track {
+      background: #C3D0B5;
+      border-radius: 5px;
+      height: 8px;
+    }
+
+    input[type=range]::-moz-range-thumb {
+      background: #7c987a;
+      border: none;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
       transition: background 0.3s ease;
     }
+
+    input[type=range]::-webkit-slider-runnable-track {
+      background: #C3D0B5;
+      border-radius: 5px;
+      height: 8px;
+    }
+
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 20px;
-      height: 20px;
+      margin-top: -5px;
+      background: #7c987a;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
-      background: #D1D8BE;
-      border: 2px solid #7b967d;
       cursor: pointer;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-      margin-top: -6px;
-      box-shadow: 0 0 5px rgba(167, 193, 168, 0.8);
+      transition: background 0.3s ease;
+      border: none;
     }
+
     input[type=range]:hover::-webkit-slider-thumb {
-      background-color: #7b967d;
-      border-color: #A7C1A8;
+      background: #6a7c65;
     }
-    input[type=range]::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #D1D8BE;
-      border: 2px solid #7b967d;
-      cursor: pointer;
-      box-shadow: 0 0 5px rgba(167, 193, 168, 0.8);
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
+
     input[type=range]:hover::-moz-range-thumb {
-      background-color: #7b967d;
-      border-color: #A7C1A8;
+      background: #6a7c65;
     }
 
-    /* Audio spectrum container */
-    .spectrum {
-      width: 100%;
-      height: 60px;
-      background: #D1D8BE;
-      border-radius: 12px;
-      margin-top: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-    .bar {
-      position: absolute;
-      bottom: 0;
-      width: 3px;
-      background-color: #7b967d;
-      opacity: 0.8;
-      border-radius: 2px;
-      transition: height 0.1s ease;
+    footer.footer {
+      background-color: #D1D8BE;
+      color: #2a2a2a;
+      text-align: center;
+      padding: 30px 0;
+      font-size: 0.9em;
+      user-select: none;
     }
 
+    @media(max-width: 600px) {
+      .audio-tracks {
+        flex-direction: column;
+        align-items: center;
+      }
+      .track {
+        width: 90%;
+        margin-bottom: 20px;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="header">
-    <div class="container">
-      <h1 class="logo">Abiral Music</h1>
+    <div class="container center-header">
+      <h1 class="logo">Abiral Studios</h1>
       <nav>
         <ul class="nav-list">
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="services.html">Services</a></li>
           <li><a href="books.html">Books</a></li>
@@ -214,94 +231,42 @@
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Your Sound, Perfected</h1>
-      <p>Crafting professional audio with 5+ years of experience using FL Studio. Get custom beats, mixing, mastering, and vocal editing tailored to your unique style.</p>
-    </section>
+  <section class="hero">
+    <div class="container">
+      <h2 class="hero-title">Your Sound, Perfected</h2>
+      <p class="hero-subtitle">Crafting professional audio with 5+ years of experience using FL Studio. Get custom beats, mixing, mastering, and vocal editing tailored to your unique style.</p>
+    </div>
+  </section>
 
-    <section class="audio-tracks">
-      <div class="track" data-src="track1.mp3" data-title="Westcoast Beat">
-        Westcoast Beat
-        <audio controls></audio>
-        <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" aria-label="Volume Control" />
-        <div class="spectrum"></div>
+  <section class="services-section container">
+    <h3>Our Services</h3>
+    <div class="services">
+      <a href="services.html#mixing" class="service">🎧 Mixing</a>
+      <a href="services.html#mastering" class="service">🎚 Mastering</a>
+      <a href="services.html#vocals" class="service">🎤 Vocal Mixing</a>
+      <a href="services.html#beats" class="service">🎵 Custom Beats</a>
+    </div>
+
+    <h3 style="text-align:center; margin-bottom: 30px; color: #2a2a2a;">Work Preview</h3>
+
+    <div class="audio-tracks">
+      <div class="track">
+        <p class="track-name">Westcoast Beat</p>
+        <audio controls controlsList="nodownload" id="audio1" src="track1.mp3" type="audio/mpeg"></audio>
+        <input type="range" min="0" max="1" step="0.01" value="1" 
+               oninput="document.getElementById('audio1').volume=this.value"/>
       </div>
-      <div class="track" data-src="track2.mp3" data-title="Sexy Drill Beat">
-        Sexy Drill Beat
-        <audio controls></audio>
-        <input type="range" min="0" max="1" step="0.01" value="1" class="volume-slider" aria-label="Volume Control" />
-        <div class="spectrum"></div>
+      <div class="track">
+        <p class="track-name">Sexy Drill Beat</p>
+        <audio controls controlsList="nodownload" id="audio2" src="track2.mp3" type="audio/mpeg"></audio>
+        <input type="range" min="0" max="1" step="0.01" value="1" 
+               oninput="document.getElementById('audio2').volume=this.value"/>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer class="footer">
-    <p>&copy; 2025 Abiral Music. All rights reserved.</p>
+    <p>&copy; 2025 Abiral Studios — Gangtok, Sikkim</p>
   </footer>
-
-  <script>
-    // Setup audio players with spectrum and volume controls
-    document.querySelectorAll('.track').forEach(track => {
-      const audio = track.querySelector('audio');
-      const volumeSlider = track.querySelector('.volume-slider');
-      const spectrum = track.querySelector('.spectrum');
-      const src = track.dataset.src;
-
-      audio.src = src;
-
-      // Volume control
-      volumeSlider.addEventListener('input', e => {
-        audio.volume = e.target.value;
-      });
-
-      // Audio Spectrum setup
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const analyser = audioCtx.createAnalyser();
-      analyser.fftSize = 64;
-      const source = audioCtx.createMediaElementSource(audio);
-      source.connect(analyser);
-      analyser.connect(audioCtx.destination);
-
-      const bufferLength = analyser.frequencyBinCount;
-      const dataArray = new Uint8Array(bufferLength);
-
-      // Create bars
-      const bars = [];
-      for (let i = 0; i < bufferLength; i++) {
-        const bar = document.createElement('div');
-        bar.className = 'bar';
-        bar.style.left = (i * 5) + 'px';
-        bar.style.width = '3px';
-        bar.style.height = '10px';
-        spectrum.appendChild(bar);
-        bars.push(bar);
-      }
-
-      function animateSpectrum() {
-        requestAnimationFrame(animateSpectrum);
-        analyser.getByteFrequencyData(dataArray);
-        for (let i = 0; i < bufferLength; i++) {
-          let barHeight = dataArray[i] / 2;
-          bars[i].style.height = barHeight + 'px';
-          bars[i].style.opacity = Math.min(barHeight / 30, 1);
-        }
-      }
-
-      audio.addEventListener('play', () => {
-        // Resume audio context on user interaction
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        animateSpectrum();
-      });
-
-      audio.addEventListener('pause', () => {
-        // Clear spectrum bars height on pause
-        bars.forEach(bar => (bar.style.height = '10px'));
-      });
-
-    });
-  </script>
 </body>
 </html>
