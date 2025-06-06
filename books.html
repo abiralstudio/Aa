@@ -3,31 +3,232 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Books - Abiral Music</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Books - Abiral Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #a987ff;
+      --hover: #c3aafd;
+      --primary-fg: #fff;
+      --primary-bg: #18162a;
+      --accent-light: #dcd2fb;
+      --shadow: 0 7px 32px #7b3ff244;
+      --glow: 0 0 32px #a987ff66, 0 0 12px #fff7;
+      --header-height: 64px;
+    }
+    html, body {
+      background: var(--primary-bg);
+      color: var(--primary-fg);
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    body {
+      padding-top: var(--header-height);
+    }
+    .header {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--primary-bg);
+      box-shadow: 0 4px 24px #271d4911;
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: var(--header-height);
+    }
+    .header-inner {
+      width: 100%;
+      height: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .logo {
+      font-size: 2.05em;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 2px;
+      margin: 0 auto;
+      text-shadow: 0 2px 14px var(--accent), 0 1px 0 #fff1;
+      user-select: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 50%;
+      white-space: nowrap;
+      z-index: 1202;
+      line-height: 1;
+      transition: font-size 0.2s;
+      text-decoration: none;
+    }
+    .hamburger {
+      display: block;
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 44px;
+      height: 44px;
+      z-index: 1203;
+      outline: none;
+      transition: filter 0.2s;
+    }
+    .hamburger span {
+      display: block;
+      height: 3.5px;
+      width: 33px;
+      border-radius: 2.5px;
+      background: var(--accent);
+      margin: 7px auto;
+      transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(10px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-10px) rotate(-45deg);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      top: var(--header-height);
+      background: var(--primary-bg);
+      box-shadow: var(--shadow);
+      border-radius: 0 0 18px 18px;
+      padding: 0 30px;
+      transition: max-height 0.3s, opacity 0.3s;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      z-index: 1201;
+    }
+    .nav.open {
+      opacity: 1;
+      max-height: 350px;
+      padding: 18px 30px 18px 30px;
+    }
+    .nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      margin: 0;
+      gap: 16px;
+    }
+    .nav ul li a {
+      color: var(--primary-fg);
+      font-weight: 700;
+      font-size: 1.13em;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 7px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .nav ul li a:hover,
+    .nav ul li a:focus {
+      background: var(--accent);
+      color: var(--primary-bg);
+      outline: none;
+    }
+    @media (min-width: 850px) {
+      .hamburger {
+        display: none;
+      }
+      .nav {
+        opacity: 1;
+        position: static;
+        background: none;
+        box-shadow: none;
+        max-height: none;
+        padding: 0;
+        border-radius: 0;
+      }
+      .nav ul {
+        flex-direction: row;
+        gap: 27px;
+      }
+    }
+    @media (max-width: 849px) {
+      .header-inner {
+        justify-content: flex-start;
+      }
+      .logo {
+        left: 18px;
+        transform: none;
+        position: relative;
+        font-size: 1.6em;
+      }
+    }
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h2 {
+      font-weight: 700;
+      margin-bottom: 30px;
+      font-size: 2.2rem;
+      color: var(--accent);
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
-    <div class="container">
-      <h1 class="logo">Abiral Music</h1>
-      <nav>
-        <ul class="nav-list">
+    <div class="header-inner">
+      <a class="logo" href="index.html">Abiral Studios</a>
+      <button class="hamburger" id="hamburger" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
           <li><a href="books.html">Books</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
-
   <main class="container">
     <h2>Books</h2>
     <p>Explore guides and ebooks for music production, songwriting, and audio engineering. More coming soon!</p>
   </main>
-
-  <footer class="footer">
-    <p>&copy; 2025 Abiral Music</p>
-  </footer>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', function() {
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', !expanded);
+    });
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        nav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
 </body>
 </html>
