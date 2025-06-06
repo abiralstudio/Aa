@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Abiral Music</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #EEEFE0;
+      color: #3a3a35;
+      margin: 0;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header.header {
+      background-color: #D1D8BE;
+      padding: 20px 0;
+      border-bottom: 2px solid #A7C1A8;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #A7C1A8;
+      text-align: center;
+      margin: 0;
+    }
+
+    nav {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline-flex;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #3a3a35;
+    }
+
+    .nav-list li a {
+      padding: 5px 8px;
+      border-radius: 5px;
+      color: #3a3a35;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .nav-list li a.active,
+    .nav-list li a:hover {
+      background-color: #A7C1A8;
+      color: #EEEFE0;
+    }
+
+    main.container h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #A7C1A8;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    main.container p {
+      font-size: 1.15rem;
+      margin-bottom: 24px;
+      color: #55594b;
+      max-width: 750px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.75;
+    }
+
+    main.container strong {
+      color: #6b7a69;
+      font-weight: 700;
+    }
+
+    footer.footer {
+      background-color: #D1D8BE;
+      padding: 20px 0;
+      text-align: center;
+      color: #6b7a69;
+      font-weight: 600;
+      border-top: 2px solid #A7C1A8;
+      margin-top: 60px;
+      font-size: 1rem;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      main.container {
+        padding: 30px 15px;
+      }
+      
+      main.container h2 {
+        font-size: 2.2rem;
+      }
+      
+      main.container p {
+        font-size: 1rem;
+      }
+      
+      .nav-list {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Abiral Music</h1>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>About Me</h2>
+    <p>
+      Hello! I'm Abiral, the founder and lead producer behind Abiral Music, proudly based in the serene city of Gangtok, Sikkim. With over five years of dedicated experience in the world of music production, I have been passionate about crafting sounds that not only entertain but also inspire and connect deeply with listeners.
+    </p>
+    <p>
+      My journey began with a simple love for music and a curiosity about how sound shapes emotion. Over the years, I’ve honed my skills primarily using <strong>FL Studio</strong>, one of the most versatile digital audio workstations. Through continuous learning and experimentation, I have mastered the art of <strong>mixing, mastering, vocal editing, and producing custom beats</strong> tailored to the unique style of every artist I collaborate with.
+    </p>
+    <p>
+      At Abiral Music, I believe every track tells a story, and my mission is to bring your musical vision to life with professionalism and creativity. Whether you’re a budding artist looking for your first polished demo or an established musician ready to elevate your sound to new heights, I offer a personalized approach that respects your style and goals.
+    </p>
+    <p>
+      Beyond just technical expertise, I pride myself on building strong relationships with my clients, fostering an environment of trust and collaboration. Music is more than just notes and rhythms—it’s an expression of the soul, and I’m here to help you express yours.
+    </p>
+    <p>
+      When I’m not behind the mixing console, you’ll find me exploring the vibrant culture of Sikkim, drawing inspiration from nature, or experimenting with new sounds and genres. This passion fuels my creativity and ensures that every project I undertake is infused with originality and heart.
+    </p>
+    <p>
+      Thank you for considering Abiral Music. I’m excited to work with you and create something truly amazing that resonates with audiences worldwide.
+    </p>
+    <p style="text-align: center; font-weight: 700; color: #6b7a69; font-size: 1.25rem;">
+      Let’s make music that moves the world.
+    </p>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Abiral Music. All rights reserved.</p>
+  </footer>
+</body>
+</html>

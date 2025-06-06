@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services - Abiral Music</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #EEEFE0;
+      color: #3a3a35;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    a {
+      color: #A7C1A8;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #D1D8BE;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 15px;
+    }
+
+    header.header {
+      background-color: #D1D8BE;
+      padding: 20px 0;
+      border-bottom: 2px solid #A7C1A8;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #A7C1A8;
+      text-align: center;
+      margin: 0;
+    }
+
+    nav {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline-flex;
+      gap: 30px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #3a3a35;
+    }
+
+    .nav-list li a {
+      padding: 5px 8px;
+      border-radius: 5px;
+      color: #3a3a35;
+    }
+
+    .nav-list li a.active,
+    .nav-list li a:hover {
+      background-color: #A7C1A8;
+      color: #EEEFE0;
+    }
+
+    main.container h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #A7C1A8;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .service-card {
+      background-color: #F7F9F5;
+      border: 1.5px solid #A7C1A8;
+      border-radius: 12px;
+      padding: 25px 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 8px rgb(167 193 168 / 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 20px rgb(167 193 168 / 0.5);
+    }
+
+    .service-icon {
+      font-size: 3.5rem;
+      color: #A7C1A8;
+      flex-shrink: 0;
+      width: 60px;
+      text-align: center;
+    }
+
+    .service-details {
+      flex-grow: 1;
+      color: #3a3a35;
+    }
+
+    .service-details h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #6b7a69;
+    }
+
+    .service-details p {
+      margin: 5px 0;
+      font-size: 1.1rem;
+      color: #55594b;
+    }
+
+    .price {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #A7C1A8;
+      margin-top: 12px;
+    }
+
+    footer.footer {
+      background-color: #D1D8BE;
+      padding: 20px 0;
+      text-align: center;
+      color: #6b7a69;
+      font-weight: 600;
+      border-top: 2px solid #A7C1A8;
+      margin-top: 40px;
+      font-size: 1rem;
+      box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .service-card {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .service-icon {
+        width: auto;
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Abiral Music</h1>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html" class="active">Services</a></li>
+          <li><a href="books.html">Books</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Services & Pricing</h2>
+
+    <div class="service-card" id="mixing">
+      <div class="service-icon">🎧</div>
+      <div class="service-details">
+        <h3>Mixing</h3>
+        <p>Professional mixing to give your tracks depth, clarity, and perfect balance across all frequencies.</p>
+        <p class="price">₹3,000 per track</p>
+      </div>
+    </div>
+
+    <div class="service-card" id="mastering">
+      <div class="service-icon">🎚</div>
+      <div class="service-details">
+        <h3>Mastering</h3>
+        <p>Finalize your music with premium loudness, polish, and optimization for all streaming platforms.</p>
+        <p class="price">₹2,000 per track</p>
+      </div>
+    </div>
+
+    <div class="service-card" id="vocals">
+      <div class="service-icon">🎤</div>
+      <div class="service-details">
+        <h3>Vocal Editing</h3>
+        <p>Expert pitch correction, tuning, and clarity enhancement to make your vocals shine.</p>
+        <p class="price">₹1,200 per track</p>
+      </div>
+    </div>
+
+    <div class="service-card" id="beats">
+      <div class="service-icon">🎵</div>
+      <div class="service-details">
+        <h3>Custom Beats</h3>
+        <p>Original instrumentals crafted uniquely to fit your style, mood, and genre.</p>
+        <p class="price">₹5,000 per beat</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Abiral Music. All rights reserved.</p>
+  </footer>
+</body>
+</html>
